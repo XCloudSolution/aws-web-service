@@ -11,36 +11,53 @@ api = Api(app)
 # the get, post methods correspond to get and post requests
 # they are automatically mapped by flask_restful.
 # other methods include put, delete, etc.
-class Hello(Resource):
 
-	# corresponds to the GET request.
-	# this function is called whenever there
-	# is a GET request for this resource
-	def get(self):
 
-		return jsonify({'message': 'hello world'})
+class Offerings(Resource):
 
-	# Corresponds to POST request
-	def post(self):
-		
-		data = request.get_json()	 # status code
-		return jsonify({'data': data}), 201
+    # corresponds to the GET request.
+    # this function is called whenever there
+    # is a GET request for this resource
+    def get(self):
 
+        return jsonify({'offering': [{"type": "DynamoDB", "path": "/dynamodb/"}, {"type": "RDS", "path": "/rds/"}]})
 
 # another resource to calculate the square of a number
-class Square(Resource):
 
-	def get(self, num):
 
-		return jsonify({'square': num**2})
+class DynamoDB(Resource):
+
+    # Corresponds to POST request
+    def post(self):
+
+        data = request.get_json()	 # status code
+        return jsonify({'data': data}), 201
+
+    def get(self, id):
+
+        return jsonify({'id': id})
+
+
+class RDS(Resource):
+
+    # Corresponds to POST request
+    def post(self):
+
+        data = request.get_json()	 # status code
+        return jsonify({'data': data}), 201
+
+    def get(self, id):
+
+        return jsonify({'id': id})
 
 
 # adding the defined resources along with their corresponding urls
-api.add_resource(Hello, '/')
-api.add_resource(Square, '/square/<int:num>')
+api.add_resource(Offerings, '/')
+api.add_resource(DynamoDB, '/dynamodb/<int:id>', endpoint='dynamodb')
+api.add_resource(RDS, '/rds/<int:id>', endpoint='rds')
 
 
 # driver function
 if __name__ == '__main__':
 
-	app.run(debug = True)
+    app.run(debug=True)
