@@ -1,6 +1,9 @@
 # using flask_restful
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
+import json
+import requests
+
 
 # creating the flask app
 app = Flask(__name__)
@@ -51,7 +54,15 @@ class RDS(Resource):
         return jsonify({'id': id})
 
 
+class Products(Resource):
+    def get(self):
+
+        r = requests.get(url="https://fakestoreapi.com/products/")
+        return r.json()
+
+
 # adding the defined resources along with their corresponding urls
+api.add_resource(Products, '/products')
 api.add_resource(Offerings, '/')
 api.add_resource(DynamoDB, '/dynamodb/<int:id>', endpoint='dynamodb')
 api.add_resource(RDS, '/rds/<int:id>', endpoint='rds')

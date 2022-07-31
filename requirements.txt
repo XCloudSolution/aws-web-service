@@ -1,2 +1,5 @@
 flask-restful
 boto3
+flask
+requests
+flask-restful
