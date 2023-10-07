@@ -2,7 +2,7 @@
 version: 2
 plan:
   project-key: POC
-  key: POC
+  key: PLAN
   name: Build the proj
 stages:
   - Build hull:
