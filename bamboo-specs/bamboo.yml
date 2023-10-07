@@ -1,0 +1,14 @@
+---
+version: 2
+plan:
+  project-key: POC
+  key: POC
+  name: Build the proj
+stages:
+  - Build hull:
+    - Build
+
+Build:
+  tasks:
+    - script:
+      - echo 'Hello World!'
