@@ -3,12 +3,14 @@ version: 2
 plan:
   project-key: POC
   key: PLAN
-  name: Build the proj
-stages:
-  - Build hull:
-    - Build
+  name: My Plan
 
-Build:
+stages:
+  - Stage 1:
+      jobs:
+        - Job 1
+
+Job 1:
   tasks:
     - script:
-      - echo 'Hello World!'
+        - echo 'Hello from YAML Specs'
