@@ -2,7 +2,7 @@
 version: 2
 plan:
   project-key: POC
-  key: PLAN
+  key: POC
   name: My Plan
 
 stages:
